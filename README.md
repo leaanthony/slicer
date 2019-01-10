@@ -2,10 +2,10 @@
 <div style="text-align:center; width:400px">
   <img src="logo.png"/>
   Utility class for handling slices.
-  [![Go Report Card](https://goreportcard.com/badge/github.com/leaanthony/slicer)](https://goreportcard.com/report/github.com/leaanthony/slicer)
-  
 </div>
-
+  [![Go Report Card](https://goreportcard.com/badge/github.com/leaanthony/slicer)](https://goreportcard.com/report/github.com/leaanthony/slicer)
+  [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)]
+  (http://godoc.org/github.com/leaanthony/slicer)
 ## Install
 
 `go get -u github.com/leaanthony/slicer`
