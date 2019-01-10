@@ -1,4 +1,3 @@
-// Package slicer cotains utility classes for handling slices
 package slicer
 
 // Int8Slicer handles slices of int8s

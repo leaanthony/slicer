@@ -1,7 +1,10 @@
 
-<div style="text-align:center; width:400px"><img src="logo.png"/></div>
-
-Utility class for handling slices.
+<div style="text-align:center; width:400px">
+  <img src="logo.png"/>
+  Utility class for handling slices.
+  [![Go Report Card](https://goreportcard.com/badge/github.com/leaanthony/slicer)](https://goreportcard.com/report/github.com/leaanthony/slicer)
+  
+</div>
 
 ## Install
 

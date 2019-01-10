@@ -1,4 +1,3 @@
-// Package slicer cotains utility classes for handling slices
 package slicer
 
 // Float32Slicer handles slices of float32s
