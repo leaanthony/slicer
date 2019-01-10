@@ -5,9 +5,7 @@
 </div>
 
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/leaanthony/slicer)](https://goreportcard.com/report/github.com/leaanthony/slicer)  
-
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/leaanthony/slicer)
+[![Go Report Card](https://goreportcard.com/badge/github.com/leaanthony/slicer)](https://goreportcard.com/report/github.com/leaanthony/slicer) [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/leaanthony/slicer)
 
   
 
