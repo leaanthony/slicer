@@ -1,15 +1,13 @@
-package test
+package slicer
 
 import (
 	"strings"
 	"testing"
-
-	"github.com/leaanthony/slicer"
 )
 
 func TestStringAdd(t *testing.T) {
 
-	s := slicer.String()
+	s := String()
 	s.Add("one")
 	s.Add("two")
 
@@ -22,7 +20,7 @@ func TestStringAdd(t *testing.T) {
 
 func TestStringAddSlice(t *testing.T) {
 
-	s := slicer.String()
+	s := String()
 	s.Add("one")
 	s.Add("two")
 	extras := []string{"three", "four"}
@@ -37,11 +35,11 @@ func TestStringAddSlice(t *testing.T) {
 
 func TestStringAddSlicer(t *testing.T) {
 
-	s := slicer.String()
+	s := String()
 	s.Add("one")
 	s.Add("two")
 
-	p := slicer.String()
+	p := String()
 	p.Add("three")
 	p.Add("four")
 

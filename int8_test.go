@@ -1,55 +1,53 @@
-package test
+package slicer
 
 import (
 	"encoding/json"
 	"testing"
-
-	"github.com/leaanthony/slicer"
 )
 
-func TestFloat32Add(t *testing.T) {
+func TestInt8Add(t *testing.T) {
 
-	s := slicer.Float32()
-	s.Add(1.1)
-	s.Add(2.5)
+	s := Int8()
+	s.Add(1)
+	s.Add(2)
 
-	expected := "[1.1,2.5]"
+	expected := "[1,2]"
 	actual, _ := json.Marshal(s.AsSlice())
 	if expected != string(actual) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
 
-func TestFloat32AddSlice(t *testing.T) {
+func TestInt8AddSlice(t *testing.T) {
 
-	s := slicer.Float32()
-	s.Add(1.1)
-	s.Add(2.2)
+	s := Int8()
+	s.Add(1)
+	s.Add(2)
 
-	extras := []float32{3.3, 4.4}
+	extras := []int8{3, 4}
 
 	s.AddSlice(extras)
 
-	expected := "[1.1,2.2,3.3,4.4]"
+	expected := "[1,2,3,4]"
 	actual, _ := json.Marshal(s.AsSlice())
 	if expected != string(actual) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
 
-func TestFloat32AddSlicer(t *testing.T) {
+func TestInt8AddSlicer(t *testing.T) {
 
-	s := slicer.Float32()
-	s.Add(1.1)
-	s.Add(2.2)
+	s := Int8()
+	s.Add(1)
+	s.Add(2)
 
-	p := slicer.Float32()
-	p.Add(3.3)
-	p.Add(4.4)
+	p := Int8()
+	p.Add(3)
+	p.Add(4)
 
 	s.AddSlicer(p)
 
-	expected := "[1.1,2.2,3.3,4.4]"
+	expected := "[1,2,3,4]"
 	actual, _ := json.Marshal(s.AsSlice())
 	if expected != string(actual) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)

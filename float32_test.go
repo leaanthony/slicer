@@ -1,15 +1,13 @@
-package test
+package slicer
 
 import (
 	"encoding/json"
 	"testing"
-
-	"github.com/leaanthony/slicer"
 )
 
-func TestFloat64Add(t *testing.T) {
+func TestFloat32Add(t *testing.T) {
 
-	s := slicer.Float64()
+	s := Float32()
 	s.Add(1.1)
 	s.Add(2.5)
 
@@ -20,13 +18,13 @@ func TestFloat64Add(t *testing.T) {
 	}
 }
 
-func TestFloat64AddSlice(t *testing.T) {
+func TestFloat32AddSlice(t *testing.T) {
 
-	s := slicer.Float64()
+	s := Float32()
 	s.Add(1.1)
 	s.Add(2.2)
 
-	extras := []float64{3.3, 4.4}
+	extras := []float32{3.3, 4.4}
 
 	s.AddSlice(extras)
 
@@ -37,13 +35,13 @@ func TestFloat64AddSlice(t *testing.T) {
 	}
 }
 
-func TestFloat64AddSlicer(t *testing.T) {
+func TestFloat32AddSlicer(t *testing.T) {
 
-	s := slicer.Float64()
+	s := Float32()
 	s.Add(1.1)
 	s.Add(2.2)
 
-	p := slicer.Float64()
+	p := Float32()
 	p.Add(3.3)
 	p.Add(4.4)
 

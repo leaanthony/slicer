@@ -1,15 +1,13 @@
-package test
+package slicer
 
 import (
 	"encoding/json"
 	"testing"
-
-	"github.com/leaanthony/slicer"
 )
 
 func TestInterfaceAdd(t *testing.T) {
 
-	s := slicer.Interface()
+	s := Interface()
 	var a interface{} = 1
 	var b interface{} = "hello"
 	s.Add(a)
@@ -24,7 +22,7 @@ func TestInterfaceAdd(t *testing.T) {
 
 func TestInterfaceAddSlice(t *testing.T) {
 
-	s := slicer.Interface()
+	s := Interface()
 	var a interface{} = 1
 	var b interface{} = "hello"
 	s.Add(a)
@@ -42,13 +40,13 @@ func TestInterfaceAddSlice(t *testing.T) {
 }
 func TestInterfaceAddSlicer(t *testing.T) {
 
-	s := slicer.Interface()
+	s := Interface()
 	var a interface{} = 1
 	var b interface{} = "hello"
 	s.Add(a)
 	s.Add(b)
 
-	p := slicer.Interface()
+	p := Interface()
 	var c interface{} = true
 	var d interface{} = 6.6
 	p.Add(c)

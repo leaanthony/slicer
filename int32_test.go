@@ -1,15 +1,13 @@
-package test
+package slicer
 
 import (
 	"encoding/json"
 	"testing"
-
-	"github.com/leaanthony/slicer"
 )
 
 func TestInt32Add(t *testing.T) {
 
-	s := slicer.Int32()
+	s := Int32()
 	s.Add(1)
 	s.Add(2)
 
@@ -22,7 +20,7 @@ func TestInt32Add(t *testing.T) {
 
 func TestInt32AddSlice(t *testing.T) {
 
-	s := slicer.Int32()
+	s := Int32()
 	s.Add(1)
 	s.Add(2)
 
@@ -39,11 +37,11 @@ func TestInt32AddSlice(t *testing.T) {
 
 func TestInt32AddSlicer(t *testing.T) {
 
-	s := slicer.Int32()
+	s := Int32()
 	s.Add(1)
 	s.Add(2)
 
-	p := slicer.Int32()
+	p := Int32()
 	p.Add(3)
 	p.Add(4)
 

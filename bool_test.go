@@ -1,15 +1,13 @@
-package test
+package slicer
 
 import (
 	"encoding/json"
 	"testing"
-
-	"github.com/leaanthony/slicer"
 )
 
 func TestBoolAdd(t *testing.T) {
 
-	s := slicer.Bool()
+	s := Bool()
 	s.Add(true)
 	s.Add(false)
 
@@ -22,7 +20,7 @@ func TestBoolAdd(t *testing.T) {
 
 func TestBoolAddSlice(t *testing.T) {
 
-	s := slicer.Bool()
+	s := Bool()
 	s.Add(true)
 	s.Add(false)
 
@@ -39,11 +37,11 @@ func TestBoolAddSlice(t *testing.T) {
 
 func TestBoolAddSlicer(t *testing.T) {
 
-	s := slicer.Bool()
+	s := Bool()
 	s.Add(true)
 	s.Add(false)
 
-	p := slicer.Bool()
+	p := Bool()
 	p.Add(true)
 	p.Add(false)
 

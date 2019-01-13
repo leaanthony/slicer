@@ -1,15 +1,13 @@
-package test
+package slicer
 
 import (
 	"encoding/json"
 	"testing"
-
-	"github.com/leaanthony/slicer"
 )
 
-func TestIntAdd(t *testing.T) {
+func TestInt64Add(t *testing.T) {
 
-	s := slicer.Int()
+	s := Int64()
 	s.Add(1)
 	s.Add(2)
 
@@ -20,13 +18,13 @@ func TestIntAdd(t *testing.T) {
 	}
 }
 
-func TestIntAddSlice(t *testing.T) {
+func TestInt64AddSlice(t *testing.T) {
 
-	s := slicer.Int()
+	s := Int64()
 	s.Add(1)
 	s.Add(2)
 
-	extras := []int{3, 4}
+	extras := []int64{3, 4}
 
 	s.AddSlice(extras)
 
@@ -37,13 +35,13 @@ func TestIntAddSlice(t *testing.T) {
 	}
 }
 
-func TestIntAddSlicer(t *testing.T) {
+func TestInt64AddSlicer(t *testing.T) {
 
-	s := slicer.Int()
+	s := Int64()
 	s.Add(1)
 	s.Add(2)
 
-	p := slicer.Int()
+	p := Int64()
 	p.Add(3)
 	p.Add(4)
 
