@@ -29,3 +29,14 @@ func (s *Int16Slicer) AsSlice() []int16 {
 func (s *Int16Slicer) AddSlicer(value *Int16Slicer) {
 	s.slice = append(s.slice, value.AsSlice()...)
 }
+
+// Filter the slice based on the given function
+func (s *Int16Slicer) Filter(fn func(int16) bool) *Int16Slicer {
+	result := &Int16Slicer{}
+	for _, elem := range s.slice {
+		if fn(elem) {
+			result.Add(elem)
+		}
+	}
+	return result
+}

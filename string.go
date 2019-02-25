@@ -30,3 +30,14 @@ func (s *StringSlicer) AsSlice() []string {
 func (s *StringSlicer) AddSlicer(value *StringSlicer) {
 	s.slice = append(s.slice, value.AsSlice()...)
 }
+
+// Filter the slice based on the given function
+func (s *StringSlicer) Filter(fn func(string) bool) *StringSlicer {
+	result := &StringSlicer{}
+	for _, elem := range s.slice {
+		if fn(elem) {
+			result.Add(elem)
+		}
+	}
+	return result
+}

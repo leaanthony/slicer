@@ -60,3 +60,24 @@ func TestInterfaceAddSlicer(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+
+func TestInterfaceFilter(t *testing.T) {
+
+	s := Interface()
+	s.Add(1)
+	s.Add("hello")
+	s.Add(true)
+	s.Add("world")
+	s.Add(9.9)
+
+	result := s.Filter(func(i interface{}) bool {
+		_, ok := i.(string)
+		return ok
+	})
+
+	expected := `["hello","world"]`
+	actual, _ := json.Marshal(result.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}

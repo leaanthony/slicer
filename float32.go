@@ -29,3 +29,14 @@ func (s *Float32Slicer) AsSlice() []float32 {
 func (s *Float32Slicer) AddSlicer(value *Float32Slicer) {
 	s.slice = append(s.slice, value.AsSlice()...)
 }
+
+// Filter the slice based on the given function
+func (s *Float32Slicer) Filter(fn func(float32) bool) *Float32Slicer {
+	result := &Float32Slicer{}
+	for _, elem := range s.slice {
+		if fn(elem) {
+			result.Add(elem)
+		}
+	}
+	return result
+}

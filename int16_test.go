@@ -53,3 +53,24 @@ func TestInt16AddSlicer(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+func TestInt16Filter(t *testing.T) {
+
+	s := Int16()
+	s.Add(18)
+	s.Add(180)
+	s.Add(1)
+	s.Add(10)
+	s.Add(20)
+	s.Add(3)
+	s.Add(29)
+
+	result := s.Filter(func(i int16) bool {
+		return i > 19
+	})
+
+	expected := "[180,20,29]"
+	actual, _ := json.Marshal(result.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}
