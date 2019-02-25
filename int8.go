@@ -29,3 +29,14 @@ func (s *Int8Slicer) AsSlice() []int8 {
 func (s *Int8Slicer) AddSlicer(value *Int8Slicer) {
 	s.slice = append(s.slice, value.AsSlice()...)
 }
+
+// Filter the slice based on the given function
+func (s *Int8Slicer) Filter(fn func(int8) bool) *Int8Slicer {
+	result := &Int8Slicer{}
+	for _, elem := range s.slice {
+		if fn(elem) {
+			result.Add(elem)
+		}
+	}
+	return result
+}

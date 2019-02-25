@@ -29,3 +29,14 @@ func (s *InterfaceSlicer) AsSlice() []interface{} {
 func (s *InterfaceSlicer) AddSlicer(value *InterfaceSlicer) {
 	s.slice = append(s.slice, value.AsSlice()...)
 }
+
+// Filter the slice based on the given function
+func (s *InterfaceSlicer) Filter(fn func(interface{}) bool) *InterfaceSlicer {
+	result := &InterfaceSlicer{}
+	for _, elem := range s.slice {
+		if fn(elem) {
+			result.Add(elem)
+		}
+	}
+	return result
+}
