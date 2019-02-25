@@ -40,3 +40,10 @@ func (s *InterfaceSlicer) Filter(fn func(interface{}) bool) *InterfaceSlicer {
 	}
 	return result
 }
+
+// Each runs a function on every element of the slice
+func (s *InterfaceSlicer) Each(fn func(interface{})) {
+	for _, elem := range s.slice {
+		fn(elem)
+	}
+}

@@ -74,3 +74,25 @@ func TestInt16Filter(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+func TestInt16Each(t *testing.T) {
+
+	s := Int16()
+	s.Add(18)
+	s.Add(10)
+	s.Add(1)
+	s.Add(10)
+	s.Add(20)
+	s.Add(3)
+	s.Add(29)
+
+	var result int16
+
+	s.Each(func(i int16) {
+		result = result + i
+	})
+
+	var expected int16 = 91
+	if expected != result {
+		t.Errorf("Expected '%d', but got '%d'", expected, result)
+	}
+}

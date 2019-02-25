@@ -40,3 +40,10 @@ func (s *Float64Slicer) Filter(fn func(float64) bool) *Float64Slicer {
 	}
 	return result
 }
+
+// Each runs a function on every element of the slice
+func (s *Float64Slicer) Each(fn func(float64)) {
+	for _, elem := range s.slice {
+		fn(elem)
+	}
+}

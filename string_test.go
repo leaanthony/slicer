@@ -70,3 +70,21 @@ func TestStringFilter(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+
+func TestStringEach(t *testing.T) {
+
+	s := String()
+	s.Add("one")
+	s.Add("two")
+	s.Add("three")
+
+	result := String()
+	s.Each(func(elem string) {
+		result.Add(elem + "!")
+	})
+	expected := "one! two! three!"
+	actual := strings.Join(result.AsSlice(), " ")
+	if expected != actual {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}

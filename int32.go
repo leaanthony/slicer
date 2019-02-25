@@ -40,3 +40,10 @@ func (s *Int32Slicer) Filter(fn func(int32) bool) *Int32Slicer {
 	}
 	return result
 }
+
+// Each runs a function on every element of the slice
+func (s *Int32Slicer) Each(fn func(int32)) {
+	for _, elem := range s.slice {
+		fn(elem)
+	}
+}
