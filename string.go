@@ -41,3 +41,10 @@ func (s *StringSlicer) Filter(fn func(string) bool) *StringSlicer {
 	}
 	return result
 }
+
+// Each runs a function on every element of the slice
+func (s *StringSlicer) Each(fn func(string)) {
+	for _, elem := range s.slice {
+		fn(elem)
+	}
+}

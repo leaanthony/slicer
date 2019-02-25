@@ -81,3 +81,27 @@ func TestInterfaceFilter(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+
+func TestInterfaceEach(t *testing.T) {
+
+	s := Interface()
+	s.Add(1)
+	s.Add("hello")
+	s.Add(true)
+	s.Add("world")
+	s.Add(9.9)
+
+	result := String()
+	s.Each(func(i interface{}) {
+		val, ok := i.(string)
+		if ok {
+			result.Add(val + "!")
+		}
+	})
+
+	expected := `["hello!","world!"]`
+	actual, _ := json.Marshal(result.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}

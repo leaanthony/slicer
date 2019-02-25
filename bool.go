@@ -40,3 +40,10 @@ func (s *BoolSlicer) Filter(fn func(bool) bool) *BoolSlicer {
 	}
 	return result
 }
+
+// Each runs a function on every element of the slice
+func (s *BoolSlicer) Each(fn func(bool)) {
+	for _, elem := range s.slice {
+		fn(elem)
+	}
+}

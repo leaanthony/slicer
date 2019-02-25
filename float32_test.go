@@ -2,6 +2,7 @@ package slicer
 
 import (
 	"encoding/json"
+	"fmt"
 	"testing"
 )
 
@@ -74,5 +75,28 @@ func TestFloat32Filter(t *testing.T) {
 	actual, _ := json.Marshal(result.AsSlice())
 	if expected != string(actual) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}
+
+func TestFloat32Each(t *testing.T) {
+
+	s := Float32()
+	s.Add(0.1)
+	s.Add(0.4)
+	s.Add(0.3)
+	s.Add(0.8)
+	s.Add(0.5)
+	s.Add(1.3)
+	s.Add(3.9)
+	s.Add(0.4)
+
+	var result float32
+	s.Each(func(i float32) {
+		result += i
+	})
+
+	var expected = 7.7
+	if fmt.Sprintf("%f", expected) != fmt.Sprintf("%f", result) {
+		t.Errorf("Expected '%f', but got '%f'", expected, result)
 	}
 }

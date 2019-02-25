@@ -75,3 +75,26 @@ func TestInt64Filter(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+
+func TestInt64Each(t *testing.T) {
+
+	s := Int64()
+	s.Add(18)
+	s.Add(10)
+	s.Add(1)
+	s.Add(10)
+	s.Add(20)
+	s.Add(3)
+	s.Add(29)
+
+	var result int64
+
+	s.Each(func(i int64) {
+		result = result + i
+	})
+
+	var expected int64 = 91
+	if expected != result {
+		t.Errorf("Expected '%d', but got '%d'", expected, result)
+	}
+}
