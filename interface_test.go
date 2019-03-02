@@ -105,3 +105,19 @@ func TestInterfaceEach(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+
+// TestOptionalInterfaceSlice tests when you construct a Interface with
+// an existing slice
+func TestOptionalInterfaceSlice(t *testing.T) {
+	data := []interface{}{"one", "two", "three"}
+	s := Interface(data)
+
+	result := ""
+	s.Each(func(elem interface{}) {
+		result += elem.(string)
+	})
+	expected := "onetwothree"
+	if expected != result {
+		t.Errorf("Expected '%s', but got '%s'", expected, result)
+	}
+}

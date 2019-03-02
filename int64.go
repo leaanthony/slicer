@@ -6,7 +6,10 @@ type Int64Slicer struct {
 }
 
 // Int64 creates a new Int64Slicer
-func Int64() *Int64Slicer {
+func Int64(slice ...[]int64) *Int64Slicer {
+	if len(slice) > 0 {
+		return &Int64Slicer{slice: slice[0]}
+	}
 	return &Int64Slicer{}
 }
 

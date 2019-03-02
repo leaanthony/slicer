@@ -94,3 +94,18 @@ func TestBoolEach(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, result)
 	}
 }
+
+// TestOptionalBoolSlice tests
+func TestOptionalBoolSlice(t *testing.T) {
+	data := []bool{true, false}
+	s := Bool(data)
+
+	var result string
+	s.Each(func(elem bool) {
+		result += fmt.Sprintf("%t", elem)
+	})
+	var expected = "truefalse"
+	if expected != result {
+		t.Errorf("Expected '%s', but got '%s'", expected, result)
+	}
+}

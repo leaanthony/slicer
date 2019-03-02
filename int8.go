@@ -6,7 +6,10 @@ type Int8Slicer struct {
 }
 
 // Int8 creates a new Int8Slicer
-func Int8() *Int8Slicer {
+func Int8(slice ...[]int8) *Int8Slicer {
+	if len(slice) > 0 {
+		return &Int8Slicer{slice: slice[0]}
+	}
 	return &Int8Slicer{}
 }
 

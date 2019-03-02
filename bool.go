@@ -6,7 +6,10 @@ type BoolSlicer struct {
 }
 
 // Bool creates a new BoolSlicer
-func Bool() *BoolSlicer {
+func Bool(slice ...[]bool) *BoolSlicer {
+	if len(slice) > 0 {
+		return &BoolSlicer{slice: slice[0]}
+	}
 	return &BoolSlicer{}
 }
 

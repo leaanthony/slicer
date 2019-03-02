@@ -96,3 +96,19 @@ func TestInt16Each(t *testing.T) {
 		t.Errorf("Expected '%d', but got '%d'", expected, result)
 	}
 }
+
+// TestOptionalInt16Slice tests when you construct a Int16 with
+// an existing slice
+func TestOptionalInt16Slice(t *testing.T) {
+	data := []int16{1, 2, 3}
+	s := Int16(data)
+
+	var result int16 = 0
+	s.Each(func(elem int16) {
+		result += elem
+	})
+	var expected int16 = 6
+	if expected != result {
+		t.Errorf("Expected '%d', but got '%d'", expected, result)
+	}
+}

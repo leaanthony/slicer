@@ -47,3 +47,94 @@
   - Bool
   - Interface
   
+## API
+
+### Construction
+
+Create new Slicers by calling one of the following functions:
+  - Int()
+  - Int8()
+  - Int16()
+  - Int32()
+  - Int64()
+  - Float32()
+  - Float64()
+  - String()
+  - Bool()
+  - Interface()
+
+```
+  s := slicer.String()
+```
+
+If you wish to convert an existing slice to a Slicer, you may pass it in during creation:
+
+```
+  values := []string{"one", "two", "three"}
+  s := slicer.String(values)
+```
+
+### Add 
+
+Adds a value to the slice.
+
+```
+  values := []string{"one", "two", "three"}
+  s := slicer.String(values)
+  s.Add("four")
+```
+### AddSlice
+
+Adds an existing slice of values to a slicer
+
+```
+  s := slicer.String([]string{"one"})
+  s.AddSlice([]string{"two"})
+```
+
+### AsSlice
+
+Returns a regular slice from the slicer.
+
+```
+  s := slicer.String([]string{"one"})
+  for _, value := range s.AsSlice() {
+    ...
+  }
+```
+
+### AddSlicer
+
+Adds an existing slicer of values to another slicer
+
+```
+  a := slicer.String([]string{"one"})
+  b := slicer.String([]string{"two"})
+  a.AddSlicer(b)
+```
+
+### Filter
+
+Filter the values of a slicer based on the result of calling the given function with each value of the slice. If it returns true, the value is added to the result.
+
+```
+  a := slicer.Int([]int{1,5,7,9,6,3,1,9,1})
+  result := a.Filter(func(v int) bool {
+    return v > 5
+  })
+  // result is []int{7,9,9}
+  
+```
+
+### Each 
+
+Each iterates over all the values of a slicer, passing them in as paramter to a function
+
+```
+a := slicer.Int([]int{1,5,7,9,6,3,1,9,1})
+  result := 0
+  a.Each(func(v int) {
+    result += v
+  })
+  // result is 42
+```

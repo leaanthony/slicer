@@ -98,3 +98,19 @@ func TestInt64Each(t *testing.T) {
 		t.Errorf("Expected '%d', but got '%d'", expected, result)
 	}
 }
+
+// TestOptionalInt64Slice tests when you construct a Int64 with
+// an existing slice
+func TestOptionalInt64Slice(t *testing.T) {
+	data := []int64{1, 2, 3}
+	s := Int64(data)
+
+	var result int64 = 0
+	s.Each(func(elem int64) {
+		result += elem
+	})
+	var expected int64 = 6
+	if expected != result {
+		t.Errorf("Expected '%d', but got '%d'", expected, result)
+	}
+}

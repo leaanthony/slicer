@@ -75,3 +75,19 @@ func TestIntFilter(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+
+// TestOptionalIntSlice tests when you construct a Int with
+// an existing slice
+func TestOptionalIntSlice(t *testing.T) {
+	data := []int{1, 2, 3}
+	s := Int(data)
+
+	var result = 0
+	s.Each(func(elem int) {
+		result += elem
+	})
+	var expected = 6
+	if expected != result {
+		t.Errorf("Expected '%d', but got '%d'", expected, result)
+	}
+}

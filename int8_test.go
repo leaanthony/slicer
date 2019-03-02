@@ -97,3 +97,19 @@ func TestInt8Each(t *testing.T) {
 		t.Errorf("Expected '%d', but got '%d'", expected, result)
 	}
 }
+
+// TestOptionalInt8Slice tests when you construct a Int8 with
+// an existing slice
+func TestOptionalInt8Slice(t *testing.T) {
+	data := []int8{1, 2, 3}
+	s := Int8(data)
+
+	var result int8 = 0
+	s.Each(func(elem int8) {
+		result += elem
+	})
+	var expected int8 = 6
+	if expected != result {
+		t.Errorf("Expected '%d', but got '%d'", expected, result)
+	}
+}

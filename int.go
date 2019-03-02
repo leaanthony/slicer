@@ -6,7 +6,10 @@ type IntSlicer struct {
 }
 
 // Int creates a new IntSlicer
-func Int() *IntSlicer {
+func Int(slice ...[]int) *IntSlicer {
+	if len(slice) > 0 {
+		return &IntSlicer{slice: slice[0]}
+	}
 	return &IntSlicer{}
 }
 

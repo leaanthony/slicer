@@ -6,7 +6,10 @@ type Int32Slicer struct {
 }
 
 // Int32 creates a new Int32Slicer
-func Int32() *Int32Slicer {
+func Int32(slice ...[]int32) *Int32Slicer {
+	if len(slice) > 0 {
+		return &Int32Slicer{slice: slice[0]}
+	}
 	return &Int32Slicer{}
 }
 

@@ -88,3 +88,19 @@ func TestStringEach(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+
+// TestOptionalStringSlice tests when you construct a String with
+// an existing slice
+func TestOptionalStringSlice(t *testing.T) {
+	data := []string{"one", "two", "three"}
+	s := String(data)
+
+	result := ""
+	s.Each(func(elem string) {
+		result += elem
+	})
+	expected := "onetwothree"
+	if expected != result {
+		t.Errorf("Expected '%s', but got '%s'", expected, result)
+	}
+}

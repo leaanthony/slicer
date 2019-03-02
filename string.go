@@ -7,7 +7,10 @@ type StringSlicer struct {
 }
 
 // String creates a new StringSlicer
-func String() *StringSlicer {
+func String(slice ...[]string) *StringSlicer {
+	if len(slice) > 0 {
+		return &StringSlicer{slice: slice[0]}
+	}
 	return &StringSlicer{}
 }
 

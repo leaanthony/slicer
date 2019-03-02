@@ -6,7 +6,11 @@ type InterfaceSlicer struct {
 }
 
 // Interface creates a new InterfaceSlicer
-func Interface() *InterfaceSlicer {
+func Interface(slice ...[]interface{}) *InterfaceSlicer {
+	if len(slice) > 0 {
+		return &InterfaceSlicer{slice: slice[0]}
+	}
+
 	return &InterfaceSlicer{}
 }
 

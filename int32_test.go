@@ -98,3 +98,19 @@ func TestInt32Each(t *testing.T) {
 		t.Errorf("Expected '%d', but got '%d'", expected, result)
 	}
 }
+
+// TestOptionalInt32Slice tests when you construct a Int32 with
+// an existing slice
+func TestOptionalInt32Slice(t *testing.T) {
+	data := []int32{1, 2, 3}
+	s := Int32(data)
+
+	var result int32 = 0
+	s.Each(func(elem int32) {
+		result += elem
+	})
+	var expected int32 = 6
+	if expected != result {
+		t.Errorf("Expected '%d', but got '%d'", expected, result)
+	}
+}
