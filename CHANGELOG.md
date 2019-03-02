@@ -1,9 +1,15 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Feat
+- Add optional slice as part of construction
+
 
 <a name="v1.2.0"></a>
 ## [v1.2.0] - 2019-02-26
+### Chore
+- add changelog
+
 ### Feat
 - Add Slicer.Each()
 
