@@ -100,3 +100,19 @@ func TestFloat64Each(t *testing.T) {
 		t.Errorf("Expected '%f', but got '%f'", expected, result)
 	}
 }
+
+// TestOptionalFloat64Slice tests when you construct a Float64 with
+// an existing slice
+func TestOptionalFloat64Slice(t *testing.T) {
+	data := []float64{1, 2, 3}
+	s := Float64(data)
+
+	var result float64
+	s.Each(func(elem float64) {
+		result += elem
+	})
+	var expected = 6.0
+	if expected != result {
+		t.Errorf("Expected '%f', but got '%f'", expected, result)
+	}
+}

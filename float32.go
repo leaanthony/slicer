@@ -1,7 +1,5 @@
 package slicer
 
-import "testing"
-
 // Float32Slicer handles slices of float32s
 type Float32Slicer struct {
 	slice []float32
@@ -50,21 +48,5 @@ func (s *Float32Slicer) Filter(fn func(float32) bool) *Float32Slicer {
 func (s *Float32Slicer) Each(fn func(float32)) {
 	for _, elem := range s.slice {
 		fn(elem)
-	}
-}
-
-// TestOptionalFloat32Slice tests when you construct a Float32 with
-// an existing slice
-func TestOptionalFloat32Slice(t *testing.T) {
-	data := []float32{1, 2, 3}
-	s := Float32(data)
-
-	var result float32
-	s.Each(func(elem float32) {
-		result += elem
-	})
-	var expected float32 = 6.0
-	if expected != result {
-		t.Errorf("Expected '%f', but got '%f'", expected, result)
 	}
 }

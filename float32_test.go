@@ -100,3 +100,19 @@ func TestFloat32Each(t *testing.T) {
 		t.Errorf("Expected '%f', but got '%f'", expected, result)
 	}
 }
+
+// TestOptionalFloat32Slice tests when you construct a Float32 with
+// an existing slice
+func TestOptionalFloat32Slice(t *testing.T) {
+	data := []float32{1, 2, 3}
+	s := Float32(data)
+
+	var result float32
+	s.Each(func(elem float32) {
+		result += elem
+	})
+	var expected float32 = 6.0
+	if expected != result {
+		t.Errorf("Expected '%f', but got '%f'", expected, result)
+	}
+}
