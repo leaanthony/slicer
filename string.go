@@ -1,6 +1,8 @@
 // Package slicer cotains utility classes for handling slices
 package slicer
 
+import "sort"
+
 // StringSlicer handles slices of strings
 type StringSlicer struct {
 	slice []string
@@ -50,4 +52,9 @@ func (s *StringSlicer) Each(fn func(string)) {
 	for _, elem := range s.slice {
 		fn(elem)
 	}
+}
+
+// Sort the slice values
+func (s *StringSlicer) Sort() {
+	sort.Strings(s.slice)
 }

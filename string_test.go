@@ -104,3 +104,18 @@ func TestOptionalStringSlice(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, result)
 	}
 }
+
+// TestSort tests that the slicer can be sorted
+func TestSort(t *testing.T) {
+	data := []string{"cat", "bat", "dog", "arachnid"}
+	s := String(data)
+	s.Sort()
+	result := ""
+	s.Each(func(elem string) {
+		result += elem
+	})
+	expected := "arachnidbatcatdog"
+	if expected != result {
+		t.Errorf("Expected '%s', but got '%s'", expected, result)
+	}
+}
