@@ -58,3 +58,14 @@ func (s *StringSlicer) Each(fn func(string)) {
 func (s *StringSlicer) Sort() {
 	sort.Strings(s.slice)
 }
+
+// Contains indicates if the given value is in the slice
+func (s *StringSlicer) Contains(matcher string) bool {
+	result := false
+	for _, elem := range s.slice {
+		if elem == matcher {
+			result = true
+		}
+	}
+	return result
+}

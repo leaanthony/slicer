@@ -50,3 +50,14 @@ func (s *Int16Slicer) Each(fn func(int16)) {
 		fn(elem)
 	}
 }
+
+// Contains indicates if the given value is in the slice
+func (s *Int16Slicer) Contains(matcher int16) bool {
+	result := false
+	for _, elem := range s.slice {
+		if elem == matcher {
+			result = true
+		}
+	}
+	return result
+}

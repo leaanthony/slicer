@@ -50,3 +50,14 @@ func (s *Float64Slicer) Each(fn func(float64)) {
 		fn(elem)
 	}
 }
+
+// Contains indicates if the given value is in the slice
+func (s *Float64Slicer) Contains(matcher float64) bool {
+	result := false
+	for _, elem := range s.slice {
+		if elem == matcher {
+			result = true
+		}
+	}
+	return result
+}

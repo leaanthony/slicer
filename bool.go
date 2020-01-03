@@ -50,3 +50,14 @@ func (s *BoolSlicer) Each(fn func(bool)) {
 		fn(elem)
 	}
 }
+
+// Contains indicates if the given value is in the slice
+func (s *BoolSlicer) Contains(matcher bool) bool {
+	result := false
+	for _, elem := range s.slice {
+		if elem == matcher {
+			result = true
+		}
+	}
+	return result
+}

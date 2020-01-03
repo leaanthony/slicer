@@ -131,10 +131,20 @@ Filter the values of a slicer based on the result of calling the given function 
 Each iterates over all the values of a slicer, passing them in as paramter to a function
 
 ```
-a := slicer.Int([]int{1,5,7,9,6,3,1,9,1})
+  a := slicer.Int([]int{1,5,7,9,6,3,1,9,1})
   result := 0
   a.Each(func(v int) {
     result += v
   })
   // result is 42
+```
+
+### Contains
+
+Contains returns true if the slicer contains the given value
+
+```
+  a := slicer.Int([]int{1,5,7,9,6,3,1,9,1})
+  result := a.Contains(9)
+  // result is True
 ```

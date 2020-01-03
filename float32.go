@@ -50,3 +50,14 @@ func (s *Float32Slicer) Each(fn func(float32)) {
 		fn(elem)
 	}
 }
+
+// Contains indicates if the given value is in the slice
+func (s *Float32Slicer) Contains(matcher float32) bool {
+	result := false
+	for _, elem := range s.slice {
+		if elem == matcher {
+			result = true
+		}
+	}
+	return result
+}

@@ -51,3 +51,14 @@ func (s *InterfaceSlicer) Each(fn func(interface{})) {
 		fn(elem)
 	}
 }
+
+// Contains indicates if the given value is in the slice
+func (s *InterfaceSlicer) Contains(matcher interface{}) bool {
+	result := false
+	for _, elem := range s.slice {
+		if elem == matcher {
+			result = true
+		}
+	}
+	return result
+}
