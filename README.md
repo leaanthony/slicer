@@ -158,3 +158,12 @@ Returns a string with the slicer elements separated by the given separator
   result := a.Join(",")
   // result is "one,two,three"
 ```
+### Length
+
+Returns the length of the slice
+
+```
+  a := slicer.String([]string{"one", "two", "three"})
+  result := a.Length()
+  // result is 3
+```

@@ -77,3 +77,8 @@ func (s *StringSlicer) Contains(matcher string) bool {
 func (s *StringSlicer) Join(separator string) string {
 	return strings.Join(s.slice, separator)
 }
+
+// Length returns the number of elements in the slice
+func (s *StringSlicer) Length() int {
+	return len(s.slice)
+}

@@ -85,3 +85,8 @@ func (s *Float32Slicer) Join(separator string) string {
 	result := builder.String()
 	return result
 }
+
+// Length returns the number of elements in the slice
+func (s *Float32Slicer) Length() int {
+	return len(s.slice)
+}
