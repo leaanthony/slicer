@@ -1,7 +1,10 @@
 // Package slicer cotains utility classes for handling slices
 package slicer
 
-import "sort"
+import (
+	"sort"
+	"strings"
+)
 
 // StringSlicer handles slices of strings
 type StringSlicer struct {
@@ -68,4 +71,9 @@ func (s *StringSlicer) Contains(matcher string) bool {
 		}
 	}
 	return result
+}
+
+// Join returns a string with the slicer elements separated by the given separator
+func (s *StringSlicer) Join(separator string) string {
+	return strings.Join(s.slice, separator)
 }

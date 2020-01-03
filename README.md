@@ -148,3 +148,13 @@ Contains returns true if the slicer contains the given value
   result := a.Contains(9)
   // result is True
 ```
+
+### Join
+
+Returns a string with the slicer elements separated by the given separator
+
+```
+  a := slicer.String([]string{"one", "two", "three"})
+  result := a.Join(",")
+  // result is "one,two,three"
+```

@@ -1,5 +1,10 @@
 package slicer
 
+import (
+	"fmt"
+	"strings"
+)
+
 // IntSlicer handles slices of ints
 type IntSlicer struct {
 	slice []int
@@ -59,5 +64,24 @@ func (s *IntSlicer) Contains(matcher int) bool {
 			result = true
 		}
 	}
+	return result
+}
+
+// Join returns a string with the slicer elements separated by the given separator
+func (s *IntSlicer) Join(separator string) string {
+	var builder strings.Builder
+
+	// Shortcut no elements
+	if len(s.slice) == 0 {
+		return ""
+	}
+
+	// Iterate over length - 1
+	index := 0
+	for index = 0; index < len(s.slice)-1; index++ {
+		builder.WriteString(fmt.Sprintf("%v%s", s.slice[index], separator))
+	}
+	builder.WriteString(fmt.Sprintf("%v", s.slice[index]))
+	result := builder.String()
 	return result
 }
