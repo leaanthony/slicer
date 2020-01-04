@@ -90,3 +90,8 @@ func (s *Float64Slicer) Join(separator string) string {
 func (s *Float64Slicer) Length() int {
 	return len(s.slice)
 }
+
+// Clear all elements in the slice
+func (s *Float64Slicer) Clear() {
+	s.slice = []float64{}
+}

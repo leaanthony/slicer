@@ -90,3 +90,8 @@ func (s *Int8Slicer) Join(separator string) string {
 func (s *Int8Slicer) Length() int {
 	return len(s.slice)
 }
+
+// Clear all elements in the slice
+func (s *Int8Slicer) Clear() {
+	s.slice = []int8{}
+}

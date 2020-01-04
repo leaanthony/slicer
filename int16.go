@@ -90,3 +90,8 @@ func (s *Int16Slicer) Join(separator string) string {
 func (s *Int16Slicer) Length() int {
 	return len(s.slice)
 }
+
+// Clear all elements in the slice
+func (s *Int16Slicer) Clear() {
+	s.slice = []int16{}
+}

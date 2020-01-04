@@ -90,3 +90,8 @@ func (s *BoolSlicer) Join(separator string) string {
 func (s *BoolSlicer) Length() int {
 	return len(s.slice)
 }
+
+// Clear all elements in the slice
+func (s *BoolSlicer) Clear() {
+	s.slice = []bool{}
+}

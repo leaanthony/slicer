@@ -167,3 +167,13 @@ Returns the length of the slice
   result := a.Length()
   // result is 3
 ```
+
+### Clear
+
+Clears all elements from the current slice
+
+```
+  a := slicer.String([]string{"one", "two", "three"})
+  a.Clear()
+  // a.Length() == 0
+```
