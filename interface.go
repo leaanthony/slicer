@@ -1,8 +1,9 @@
+// Package slicer cotains utility classes for handling slices
 package slicer
 
-import "strings"
-
+// Imports
 import "fmt"
+import "strings"
 
 // InterfaceSlicer handles slices of interface{}
 type InterfaceSlicer struct {
@@ -14,13 +15,17 @@ func Interface(slice ...[]interface{}) *InterfaceSlicer {
 	if len(slice) > 0 {
 		return &InterfaceSlicer{slice: slice[0]}
 	}
-
 	return &InterfaceSlicer{}
 }
 
 // Add a interface{} value to the slicer
-func (s *InterfaceSlicer) Add(value interface{}) {
+func (s *InterfaceSlicer) Add(value interface{}, additional ...interface{}) {
 	s.slice = append(s.slice, value)
+
+	// Add additional values
+	for _, value := range additional {
+		s.slice = append(s.slice, value)
+	}
 }
 
 // AddSlice adds a interface{} slice to the slicer
@@ -67,6 +72,16 @@ func (s *InterfaceSlicer) Contains(matcher interface{}) bool {
 	return result
 }
 
+// Length returns the number of elements in the slice
+func (s *InterfaceSlicer) Length() int {
+	return len(s.slice)
+}
+
+// Clear all elements in the slice
+func (s *InterfaceSlicer) Clear() {
+	s.slice = []interface{}{}
+}
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *InterfaceSlicer) Join(separator string) string {
 	var builder strings.Builder
@@ -84,14 +99,4 @@ func (s *InterfaceSlicer) Join(separator string) string {
 	builder.WriteString(fmt.Sprintf("%v", s.slice[index]))
 	result := builder.String()
 	return result
-}
-
-// Length returns the number of elements in the slice
-func (s *InterfaceSlicer) Length() int {
-	return len(s.slice)
-}
-
-// Clear all elements in the slice
-func (s *InterfaceSlicer) Clear() {
-	s.slice = []interface{}{}
 }

@@ -1,11 +1,12 @@
+// Package slicer cotains utility classes for handling slices
 package slicer
 
-import (
-	"fmt"
-	"strings"
-)
+// Imports
+import "sort"
+import "fmt"
+import "strings"
 
-// Int64Slicer handles slices of int64s
+// Int64Slicer handles slices of int64
 type Int64Slicer struct {
 	slice []int64
 }
@@ -19,8 +20,13 @@ func Int64(slice ...[]int64) *Int64Slicer {
 }
 
 // Add a int64 value to the slicer
-func (s *Int64Slicer) Add(value int64) {
+func (s *Int64Slicer) Add(value int64, additional ...int64) {
 	s.slice = append(s.slice, value)
+
+	// Add additional values
+	for _, value := range additional {
+		s.slice = append(s.slice, value)
+	}
 }
 
 // AddSlice adds a int64 slice to the slicer
@@ -67,6 +73,16 @@ func (s *Int64Slicer) Contains(matcher int64) bool {
 	return result
 }
 
+// Length returns the number of elements in the slice
+func (s *Int64Slicer) Length() int {
+	return len(s.slice)
+}
+
+// Clear all elements in the slice
+func (s *Int64Slicer) Clear() {
+	s.slice = []int64{}
+}
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *Int64Slicer) Join(separator string) string {
 	var builder strings.Builder
@@ -85,13 +101,7 @@ func (s *Int64Slicer) Join(separator string) string {
 	result := builder.String()
 	return result
 }
-
-// Length returns the number of elements in the slice
-func (s *Int64Slicer) Length() int {
-	return len(s.slice)
-}
-
-// Clear all elements in the slice
-func (s *Int64Slicer) Clear() {
-	s.slice = []int64{}
+// Sort the slice values
+func (s *Int64Slicer) Sort() {
+	sort.Slice(s.slice, func(i, j int) bool { return s.slice[i] < s.slice[j] })
 }

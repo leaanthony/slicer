@@ -1,11 +1,11 @@
+// Package slicer cotains utility classes for handling slices
 package slicer
 
-import (
-	"fmt"
-	"strings"
-)
+// Imports
+import "fmt"
+import "strings"
 
-// BoolSlicer handles slices of bools
+// BoolSlicer handles slices of bool
 type BoolSlicer struct {
 	slice []bool
 }
@@ -19,8 +19,13 @@ func Bool(slice ...[]bool) *BoolSlicer {
 }
 
 // Add a bool value to the slicer
-func (s *BoolSlicer) Add(value bool) {
+func (s *BoolSlicer) Add(value bool, additional ...bool) {
 	s.slice = append(s.slice, value)
+
+	// Add additional values
+	for _, value := range additional {
+		s.slice = append(s.slice, value)
+	}
 }
 
 // AddSlice adds a bool slice to the slicer
@@ -67,6 +72,16 @@ func (s *BoolSlicer) Contains(matcher bool) bool {
 	return result
 }
 
+// Length returns the number of elements in the slice
+func (s *BoolSlicer) Length() int {
+	return len(s.slice)
+}
+
+// Clear all elements in the slice
+func (s *BoolSlicer) Clear() {
+	s.slice = []bool{}
+}
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *BoolSlicer) Join(separator string) string {
 	var builder strings.Builder
@@ -84,14 +99,4 @@ func (s *BoolSlicer) Join(separator string) string {
 	builder.WriteString(fmt.Sprintf("%v", s.slice[index]))
 	result := builder.String()
 	return result
-}
-
-// Length returns the number of elements in the slice
-func (s *BoolSlicer) Length() int {
-	return len(s.slice)
-}
-
-// Clear all elements in the slice
-func (s *BoolSlicer) Clear() {
-	s.slice = []bool{}
 }

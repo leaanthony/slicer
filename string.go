@@ -1,12 +1,11 @@
 // Package slicer cotains utility classes for handling slices
 package slicer
 
-import (
-	"sort"
-	"strings"
-)
+// Imports
+import "sort"
+import "strings"
 
-// StringSlicer handles slices of strings
+// StringSlicer handles slices of string
 type StringSlicer struct {
 	slice []string
 }
@@ -20,8 +19,13 @@ func String(slice ...[]string) *StringSlicer {
 }
 
 // Add a string value to the slicer
-func (s *StringSlicer) Add(value string) {
+func (s *StringSlicer) Add(value string, additional ...string) {
 	s.slice = append(s.slice, value)
+
+	// Add additional values
+	for _, value := range additional {
+		s.slice = append(s.slice, value)
+	}
 }
 
 // AddSlice adds a string slice to the slicer
@@ -57,11 +61,6 @@ func (s *StringSlicer) Each(fn func(string)) {
 	}
 }
 
-// Sort the slice values
-func (s *StringSlicer) Sort() {
-	sort.Strings(s.slice)
-}
-
 // Contains indicates if the given value is in the slice
 func (s *StringSlicer) Contains(matcher string) bool {
 	result := false
@@ -73,11 +72,6 @@ func (s *StringSlicer) Contains(matcher string) bool {
 	return result
 }
 
-// Join returns a string with the slicer elements separated by the given separator
-func (s *StringSlicer) Join(separator string) string {
-	return strings.Join(s.slice, separator)
-}
-
 // Length returns the number of elements in the slice
 func (s *StringSlicer) Length() int {
 	return len(s.slice)
@@ -86,4 +80,13 @@ func (s *StringSlicer) Length() int {
 // Clear all elements in the slice
 func (s *StringSlicer) Clear() {
 	s.slice = []string{}
+}
+
+// Join returns a string with the slicer elements separated by the given separator
+func (s *StringSlicer) Join(separator string) string {
+	return strings.Join(s.slice, separator)
+}
+// Sort the slice values
+func (s *StringSlicer) Sort() {
+	sort.Strings(s.slice)
 }

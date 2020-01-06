@@ -177,3 +177,14 @@ Clears all elements from the current slice
   a.Clear()
   // a.Length() == 0
 ```
+
+### Sort
+
+Sorts the elements of a slice. 
+Not supported by: InterfaceSlicer, BoolSlicer
+
+```
+  a := slicer.Int([]int{5,3,4,1,2})
+  a.Sour()
+  // a is []int{1,2,3,4,5}
+```

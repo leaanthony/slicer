@@ -1,11 +1,12 @@
+// Package slicer cotains utility classes for handling slices
 package slicer
 
-import (
-	"fmt"
-	"strings"
-)
+// Imports
+import "sort"
+import "fmt"
+import "strings"
 
-// IntSlicer handles slices of ints
+// IntSlicer handles slices of int
 type IntSlicer struct {
 	slice []int
 }
@@ -19,8 +20,13 @@ func Int(slice ...[]int) *IntSlicer {
 }
 
 // Add a int value to the slicer
-func (s *IntSlicer) Add(value int) {
+func (s *IntSlicer) Add(value int, additional ...int) {
 	s.slice = append(s.slice, value)
+
+	// Add additional values
+	for _, value := range additional {
+		s.slice = append(s.slice, value)
+	}
 }
 
 // AddSlice adds a int slice to the slicer
@@ -67,6 +73,16 @@ func (s *IntSlicer) Contains(matcher int) bool {
 	return result
 }
 
+// Length returns the number of elements in the slice
+func (s *IntSlicer) Length() int {
+	return len(s.slice)
+}
+
+// Clear all elements in the slice
+func (s *IntSlicer) Clear() {
+	s.slice = []int{}
+}
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *IntSlicer) Join(separator string) string {
 	var builder strings.Builder
@@ -85,13 +101,7 @@ func (s *IntSlicer) Join(separator string) string {
 	result := builder.String()
 	return result
 }
-
-// Length returns the number of elements in the slice
-func (s *IntSlicer) Length() int {
-	return len(s.slice)
-}
-
-// Clear all elements in the slice
-func (s *IntSlicer) Clear() {
-	s.slice = []int{}
+// Sort the slice values
+func (s *IntSlicer) Sort() {
+	sort.Slice(s.slice, func(i, j int) bool { return s.slice[i] < s.slice[j] })
 }

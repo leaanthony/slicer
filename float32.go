@@ -1,11 +1,12 @@
+// Package slicer cotains utility classes for handling slices
 package slicer
 
-import (
-	"fmt"
-	"strings"
-)
+// Imports
+import "sort"
+import "fmt"
+import "strings"
 
-// Float32Slicer handles slices of float32s
+// Float32Slicer handles slices of float32
 type Float32Slicer struct {
 	slice []float32
 }
@@ -19,8 +20,13 @@ func Float32(slice ...[]float32) *Float32Slicer {
 }
 
 // Add a float32 value to the slicer
-func (s *Float32Slicer) Add(value float32) {
+func (s *Float32Slicer) Add(value float32, additional ...float32) {
 	s.slice = append(s.slice, value)
+
+	// Add additional values
+	for _, value := range additional {
+		s.slice = append(s.slice, value)
+	}
 }
 
 // AddSlice adds a float32 slice to the slicer
@@ -67,6 +73,16 @@ func (s *Float32Slicer) Contains(matcher float32) bool {
 	return result
 }
 
+// Length returns the number of elements in the slice
+func (s *Float32Slicer) Length() int {
+	return len(s.slice)
+}
+
+// Clear all elements in the slice
+func (s *Float32Slicer) Clear() {
+	s.slice = []float32{}
+}
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *Float32Slicer) Join(separator string) string {
 	var builder strings.Builder
@@ -85,13 +101,7 @@ func (s *Float32Slicer) Join(separator string) string {
 	result := builder.String()
 	return result
 }
-
-// Length returns the number of elements in the slice
-func (s *Float32Slicer) Length() int {
-	return len(s.slice)
-}
-
-// Clear all elements in the slice
-func (s *Float32Slicer) Clear() {
-	s.slice = []float32{}
+// Sort the slice values
+func (s *Float32Slicer) Sort() {
+	sort.Slice(s.slice, func(i, j int) bool { return s.slice[i] < s.slice[j] })
 }

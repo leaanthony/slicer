@@ -1,11 +1,12 @@
+// Package slicer cotains utility classes for handling slices
 package slicer
 
-import (
-	"fmt"
-	"strings"
-)
+// Imports
+import "sort"
+import "fmt"
+import "strings"
 
-// Int32Slicer handles slices of int32s
+// Int32Slicer handles slices of int32
 type Int32Slicer struct {
 	slice []int32
 }
@@ -19,8 +20,13 @@ func Int32(slice ...[]int32) *Int32Slicer {
 }
 
 // Add a int32 value to the slicer
-func (s *Int32Slicer) Add(value int32) {
+func (s *Int32Slicer) Add(value int32, additional ...int32) {
 	s.slice = append(s.slice, value)
+
+	// Add additional values
+	for _, value := range additional {
+		s.slice = append(s.slice, value)
+	}
 }
 
 // AddSlice adds a int32 slice to the slicer
@@ -67,6 +73,16 @@ func (s *Int32Slicer) Contains(matcher int32) bool {
 	return result
 }
 
+// Length returns the number of elements in the slice
+func (s *Int32Slicer) Length() int {
+	return len(s.slice)
+}
+
+// Clear all elements in the slice
+func (s *Int32Slicer) Clear() {
+	s.slice = []int32{}
+}
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *Int32Slicer) Join(separator string) string {
 	var builder strings.Builder
@@ -85,13 +101,7 @@ func (s *Int32Slicer) Join(separator string) string {
 	result := builder.String()
 	return result
 }
-
-// Length returns the number of elements in the slice
-func (s *Int32Slicer) Length() int {
-	return len(s.slice)
-}
-
-// Clear all elements in the slice
-func (s *Int32Slicer) Clear() {
-	s.slice = []int32{}
+// Sort the slice values
+func (s *Int32Slicer) Sort() {
+	sort.Slice(s.slice, func(i, j int) bool { return s.slice[i] < s.slice[j] })
 }

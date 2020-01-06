@@ -116,3 +116,15 @@ func TestOptionalFloat64Slice(t *testing.T) {
 		t.Errorf("Expected '%f', but got '%f'", expected, result)
 	}
 }
+
+// TestFloat64Sort tests that the slicer can be sorted
+func TestFloat64Sort(t *testing.T) {
+	data := []float64{5, 4, 3, 2, 1}
+	s := Float64(data)
+	s.Sort()
+	result := s.Join(",")
+	expected := "1,2,3,4,5"
+	if expected != result {
+		t.Errorf("Expected '%s', but got '%s'", expected, result)
+	}
+}
