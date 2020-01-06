@@ -17,6 +17,14 @@ func TestFloat64Add(t *testing.T) {
 	if expected != string(actual) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
+	s.Clear()
+	s.Add(1.1, 2.5)
+
+	expected = "[1.1,2.5]"
+	actual, _ = json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
 }
 
 func TestFloat64AddSlice(t *testing.T) {

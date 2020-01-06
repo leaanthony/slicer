@@ -18,6 +18,15 @@ func TestInterfaceAdd(t *testing.T) {
 	if expected != string(actual) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
+
+	// Add more than one value
+	s.Clear()
+	s.Add(a, b)
+	expected = `[1,"hello"]`
+	actual, _ = json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
 }
 
 func TestInterfaceAddSlice(t *testing.T) {

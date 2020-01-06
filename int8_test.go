@@ -16,6 +16,14 @@ func TestInt8Add(t *testing.T) {
 	if expected != string(actual) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
+	s.Clear()
+	s.Add(1, 2)
+
+	expected = "[1,2]"
+	actual, _ = json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
 }
 
 func TestInt8AddSlice(t *testing.T) {
