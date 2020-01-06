@@ -180,7 +180,7 @@ Clears all elements from the current slice
 
 ### Sort
 
-Sorts the elements of a slice. 
+Sorts the elements of a slice
 Not supported by: InterfaceSlicer, BoolSlicer
 
 ```
