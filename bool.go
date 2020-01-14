@@ -100,3 +100,17 @@ func (s *BoolSlicer) Join(separator string) string {
 	result := builder.String()
 	return result
 }
+
+// Deduplicate removes duplicate values from the slice
+func (s *BoolSlicer) Deduplicate() {
+
+	result := Bool()
+
+	for _, elem := range s.slice {
+		if !result.Contains(elem) {
+			result.Add(elem)
+		}
+	}
+
+	s.slice = result.AsSlice()
+}

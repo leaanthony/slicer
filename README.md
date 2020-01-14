@@ -185,6 +185,16 @@ Not supported by: InterfaceSlicer, BoolSlicer
 
 ```
   a := slicer.Int([]int{5,3,4,1,2})
-  a.Sour()
+  a.Sort()
   // a is []int{1,2,3,4,5}
+```
+
+### Deduplicate
+
+Deduplicate removes all duplicates within a slice.
+
+```
+  a := slicer.Int([]int{5,3,5,1,3})
+  a.Deduplicate()
+  // a is []int{5,3,1}
 ```

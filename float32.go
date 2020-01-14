@@ -101,7 +101,22 @@ func (s *Float32Slicer) Join(separator string) string {
 	result := builder.String()
 	return result
 }
+
 // Sort the slice values
 func (s *Float32Slicer) Sort() {
 	sort.Slice(s.slice, func(i, j int) bool { return s.slice[i] < s.slice[j] })
+}
+
+// Deduplicate removes duplicate values from the slice
+func (s *Float32Slicer) Deduplicate() {
+
+	result := Float32()
+
+	for _, elem := range s.slice {
+		if !result.Contains(elem) {
+			result.Add(elem)
+		}
+	}
+
+	s.slice = result.AsSlice()
 }

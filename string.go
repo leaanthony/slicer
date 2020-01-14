@@ -86,7 +86,22 @@ func (s *StringSlicer) Clear() {
 func (s *StringSlicer) Join(separator string) string {
 	return strings.Join(s.slice, separator)
 }
+
 // Sort the slice values
 func (s *StringSlicer) Sort() {
 	sort.Strings(s.slice)
+}
+
+// Deduplicate removes duplicate values from the slice
+func (s *StringSlicer) Deduplicate() {
+
+	result := String()
+
+	for _, elem := range s.slice {
+		if !result.Contains(elem) {
+			result.Add(elem)
+		}
+	}
+
+	s.slice = result.AsSlice()
 }
