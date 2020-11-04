@@ -83,6 +83,17 @@ Adds a value to the slice.
   s := slicer.String(values)
   s.Add("four")
 ```
+
+### AddUnique
+
+Adds a value to the slice if it doesn't already contain it.
+
+```
+  values := []string{"one", "two", "three", "one", "two", "three"}
+  s := slicer.String(values)
+  result := s.Join(",")
+  // result is "one,two,three"
+```
 ### AddSlice
 
 Adds an existing slice of values to a slicer
