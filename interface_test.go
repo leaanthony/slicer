@@ -29,6 +29,31 @@ func TestInterfaceAdd(t *testing.T) {
 	}
 }
 
+func TestInterfaceAddUnique(t *testing.T) {
+
+	s := Interface()
+	var a interface{} = 1
+	var b interface{} = "hello"
+	s.AddUnique(a)
+	s.AddUnique(a)
+	s.AddUnique(b)
+
+	expected := `[1,"hello"]`
+	actual, _ := json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+
+	// AddUnique more than one value
+	s.Clear()
+	s.AddUnique(a, b, b, a)
+	expected = `[1,"hello"]`
+	actual, _ = json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}
+
 func TestInterfaceAddSlice(t *testing.T) {
 
 	s := Interface()

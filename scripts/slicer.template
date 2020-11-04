@@ -20,10 +20,21 @@ func _TYPETITLE_(slice ...[]_TYPE_) *_SLICERNAME_ {
 // Add a _TYPE_ value to the slicer
 func (s *_SLICERNAME_) Add(value _TYPE_, additional ..._TYPE_) {
 	s.slice = append(s.slice, value)
+	s.slice = append(s.slice, additional...)
+}
+
+// AddUnique adds a _TYPE_ value to the slicer if it does not already exist
+func (s *_SLICERNAME_) AddUnique(value _TYPE_, additional ..._TYPE_) {
+
+	if !s.Contains(value) {
+		s.slice = append(s.slice, value)
+	}
 
 	// Add additional values
 	for _, value := range additional {
-		s.slice = append(s.slice, value)
+		if !s.Contains(value) {
+			s.slice = append(s.slice, value)
+		}
 	}
 }
 
@@ -79,4 +90,18 @@ func (s *_SLICERNAME_) Length() int {
 // Clear all elements in the slice
 func (s *_SLICERNAME_) Clear() {
 	s.slice = []_TYPE_{}
+}
+
+// Deduplicate removes duplicate values from the slice
+func (s *_SLICERNAME_) Deduplicate() {
+
+	result := &_SLICERNAME_{}
+
+	for _, elem := range s.slice {
+		if !result.Contains(elem) {
+			result.Add(elem)
+		}
+	}
+
+	s.slice = result.AsSlice()
 }

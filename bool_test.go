@@ -6,6 +6,27 @@ import (
 	"testing"
 )
 
+func TestBoolAddUnique(t *testing.T) {
+
+	s := Bool()
+	s.AddUnique(true)
+	s.AddUnique(true)
+
+	expected := "[true]"
+	actual, _ := json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+
+	s.Clear()
+	s.AddUnique(true, false)
+
+	expected = "[true,false]"
+	actual, _ = json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}
 func TestBoolAdd(t *testing.T) {
 
 	s := Bool()

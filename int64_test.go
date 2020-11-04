@@ -25,6 +25,29 @@ func TestInt64Add(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+func TestInt64AddUnique(t *testing.T) {
+
+	s := Int64()
+	s.AddUnique(1)
+	s.AddUnique(2)
+	s.AddUnique(2)
+	s.AddUnique(2)
+
+	expected := "[1,2]"
+	actual, _ := json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+
+	s.Clear()
+	s.AddUnique(1, 2, 1, 2, 2, 1)
+
+	expected = "[1,2]"
+	actual, _ = json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}
 
 func TestInt64AddSlice(t *testing.T) {
 

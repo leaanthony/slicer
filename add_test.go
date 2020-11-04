@@ -26,6 +26,29 @@ func TestStringAdd(t *testing.T) {
 	}
 }
 
+func TestStringAddUnique(t *testing.T) {
+
+	s := String()
+	s.AddUnique("one")
+	s.AddUnique("one")
+	s.AddUnique("two")
+	s.AddUnique("two")
+
+	expected := "one two"
+	actual := strings.Join(s.AsSlice(), " ")
+	if expected != actual {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+
+	// AddUnique more than one value
+	s.Clear()
+	s.AddUnique("one", "two", "two")
+	actual = strings.Join(s.AsSlice(), " ")
+	if expected != actual {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}
+
 func TestStringAddSlice(t *testing.T) {
 
 	s := String()

@@ -26,6 +26,27 @@ func TestFloat64Add(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+func TestFloat64AddUnique(t *testing.T) {
+
+	s := Float64()
+	s.AddUnique(1.1)
+	s.AddUnique(2.5)
+	s.AddUnique(2.5)
+
+	expected := "[1.1,2.5]"
+	actual, _ := json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+	s.Clear()
+	s.AddUnique(1.1, 2.5, 1.1)
+
+	expected = "[1.1,2.5]"
+	actual, _ = json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}
 
 func TestFloat64AddSlice(t *testing.T) {
 

@@ -27,6 +27,28 @@ func TestFloat32Add(t *testing.T) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
 }
+func TestFloat32AddUnique(t *testing.T) {
+
+	s := Float32()
+	s.AddUnique(1.1)
+	s.AddUnique(1.1)
+	s.AddUnique(2.5)
+
+	expected := "[1.1,2.5]"
+	actual, _ := json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+
+	s.Clear()
+	s.AddUnique(1.1, 2.5, 2.5)
+
+	expected = "[1.1,2.5]"
+	actual, _ = json.Marshal(s.AsSlice())
+	if expected != string(actual) {
+		t.Errorf("Expected '%s', but got '%s'", expected, actual)
+	}
+}
 
 func TestFloat32AddSlice(t *testing.T) {
 

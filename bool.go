@@ -21,10 +21,21 @@ func Bool(slice ...[]bool) *BoolSlicer {
 // Add a bool value to the slicer
 func (s *BoolSlicer) Add(value bool, additional ...bool) {
 	s.slice = append(s.slice, value)
+	s.slice = append(s.slice, additional...)
+}
+
+// AddUnique adds a bool value to the slicer if it does not already exist
+func (s *BoolSlicer) AddUnique(value bool, additional ...bool) {
+
+	if !s.Contains(value) {
+		s.slice = append(s.slice, value)
+	}
 
 	// Add additional values
 	for _, value := range additional {
-		s.slice = append(s.slice, value)
+		if !s.Contains(value) {
+			s.slice = append(s.slice, value)
+		}
 	}
 }
 
@@ -82,6 +93,19 @@ func (s *BoolSlicer) Clear() {
 	s.slice = []bool{}
 }
 
+// Deduplicate removes duplicate values from the slice
+func (s *BoolSlicer) Deduplicate() {
+
+	result := &BoolSlicer{}
+
+	for _, elem := range s.slice {
+		if !result.Contains(elem) {
+			result.Add(elem)
+		}
+	}
+
+	s.slice = result.AsSlice()
+}
 // Join returns a string with the slicer elements separated by the given separator
 func (s *BoolSlicer) Join(separator string) string {
 	var builder strings.Builder
@@ -99,18 +123,4 @@ func (s *BoolSlicer) Join(separator string) string {
 	builder.WriteString(fmt.Sprintf("%v", s.slice[index]))
 	result := builder.String()
 	return result
-}
-
-// Deduplicate removes duplicate values from the slice
-func (s *BoolSlicer) Deduplicate() {
-
-	result := Bool()
-
-	for _, elem := range s.slice {
-		if !result.Contains(elem) {
-			result.Add(elem)
-		}
-	}
-
-	s.slice = result.AsSlice()
 }
