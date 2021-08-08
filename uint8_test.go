@@ -21,6 +21,15 @@ func TestUint8Add(t *testing.T) {
 
 }
 
+func TestUint8Length(t *testing.T) {
+	is := is.New(t)
+	s := Uint8()
+	s.Add(1)
+	s.Add(2)
+
+	is.Equal(s.Length(), 2)
+}
+
 func TestUint8AddUnique(t *testing.T) {
 	is := is.New(t)
 	s := Uint8()
@@ -34,6 +43,21 @@ func TestUint8AddUnique(t *testing.T) {
 	s.Clear()
 	s.AddUnique(1, 2, 1, 2, 2, 1)
 
+	is.Equal(s.AsSlice(), []uint8{1, 2})
+}
+
+func TestUint8Deduplicate(t *testing.T) {
+	is := is.New(t)
+	s := Uint8()
+	s.Add(1)
+	s.Add(2)
+	s.Add(2)
+	s.Add(2)
+
+	is.Equal(s.Length(), 4)
+	is.Equal(s.AsSlice(), []uint8{1, 2, 2, 2})
+	s.Deduplicate()
+	is.Equal(s.Length(), 2)
 	is.Equal(s.AsSlice(), []uint8{1, 2})
 }
 
@@ -135,4 +159,6 @@ func TestUint8Sort(t *testing.T) {
 	result := s.Join(",")
 	expected := "1,2,3,4,5"
 	is.Equal(result, expected)
+	s.Clear()
+	is.Equal(s.Join(""), "")
 }

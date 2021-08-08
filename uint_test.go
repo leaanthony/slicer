@@ -2,6 +2,7 @@ package slicer
 
 import (
 	"encoding/json"
+	"github.com/matryer/is"
 	"testing"
 )
 
@@ -25,6 +26,29 @@ func TestUintAdd(t *testing.T) {
 	if expected != string(actual) {
 		t.Errorf("Expected '%s', but got '%s'", expected, actual)
 	}
+}
+func TestUintDeduplicate(t *testing.T) {
+	is := is.New(t)
+	s := Uint()
+	s.Add(1)
+	s.Add(2)
+	s.Add(2)
+	s.Add(2)
+
+	is.Equal(s.Length(), 4)
+	is.Equal(s.AsSlice(), []uint{1, 2, 2, 2})
+	s.Deduplicate()
+	is.Equal(s.Length(), 2)
+	is.Equal(s.AsSlice(), []uint{1, 2})
+}
+
+func TestUintLength(t *testing.T) {
+	is := is.New(t)
+	s := Uint()
+	s.Add(1)
+	s.Add(2)
+
+	is.Equal(s.Length(), 2)
 }
 
 func TestUintAddUnique(t *testing.T) {
@@ -127,12 +151,13 @@ func TestOptionalUintSlice(t *testing.T) {
 
 // TestUintSort tests that the slicer can be sorted
 func TestUintSort(t *testing.T) {
+	is := is.New(t)
 	data := []uint{5, 4, 3, 2, 1}
 	s := Uint(data)
 	s.Sort()
 	result := s.Join(",")
 	expected := "1,2,3,4,5"
-	if expected != result {
-		t.Errorf("Expected '%s', but got '%s'", expected, result)
-	}
+	is.Equal(expected, result)
+	s.Clear()
+	is.Equal(s.Join(""), "")
 }

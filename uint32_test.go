@@ -2,6 +2,7 @@ package slicer
 
 import (
 	"encoding/json"
+	"github.com/matryer/is"
 	"testing"
 )
 
@@ -67,6 +68,30 @@ func TestUint32AddSlice(t *testing.T) {
 	}
 }
 
+func TestUint32Length(t *testing.T) {
+	is := is.New(t)
+	s := Uint32()
+	s.Add(1)
+	s.Add(2)
+
+	is.Equal(s.Length(), 2)
+}
+
+func TestUint32Deduplicate(t *testing.T) {
+	is := is.New(t)
+	s := Uint32()
+	s.Add(1)
+	s.Add(2)
+	s.Add(2)
+	s.Add(2)
+
+	is.Equal(s.Length(), 4)
+	is.Equal(s.AsSlice(), []uint32{1, 2, 2, 2})
+	s.Deduplicate()
+	is.Equal(s.Length(), 2)
+	is.Equal(s.AsSlice(), []uint32{1, 2})
+
+}
 func TestUint32AddSlicer(t *testing.T) {
 
 	s := Uint32()
@@ -149,12 +174,13 @@ func TestOptionalUint32Slice(t *testing.T) {
 
 // TestUint32Sort tests that the slicer can be sorted
 func TestUint32Sort(t *testing.T) {
+	is := is.New(t)
 	data := []uint32{5, 4, 3, 2, 1}
 	s := Uint32(data)
 	s.Sort()
 	result := s.Join(",")
 	expected := "1,2,3,4,5"
-	if expected != result {
-		t.Errorf("Expected '%s', but got '%s'", expected, result)
-	}
+	is.Equal(expected, result)
+	s.Clear()
+	is.Equal(s.Join(""), "")
 }

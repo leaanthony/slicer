@@ -2,6 +2,7 @@ package slicer
 
 import (
 	"encoding/json"
+	"github.com/matryer/is"
 	"testing"
 )
 
@@ -145,15 +146,38 @@ func TestOptionalUint64Slice(t *testing.T) {
 		t.Errorf("Expected '%d', but got '%d'", expected, result)
 	}
 }
+func TestUint64Deduplicate(t *testing.T) {
+	is := is.New(t)
+	s := Uint64()
+	s.Add(1)
+	s.Add(2)
+	s.Add(2)
+	s.Add(2)
+
+	is.Equal(s.Length(), 4)
+	is.Equal(s.AsSlice(), []uint64{1, 2, 2, 2})
+	s.Deduplicate()
+	is.Equal(s.Length(), 2)
+	is.Equal(s.AsSlice(), []uint64{1, 2})
+}
+func TestUint64Length(t *testing.T) {
+	is := is.New(t)
+	s := Uint64()
+	s.Add(1)
+	s.Add(2)
+
+	is.Equal(s.Length(), 2)
+}
 
 // TestUint64Sort tests that the slicer can be sorted
 func TestUint64Sort(t *testing.T) {
+	is := is.New(t)
 	data := []uint64{5, 4, 3, 2, 1}
 	s := Uint64(data)
 	s.Sort()
 	result := s.Join(",")
 	expected := "1,2,3,4,5"
-	if expected != result {
-		t.Errorf("Expected '%s', but got '%s'", expected, result)
-	}
+	is.Equal(expected, result)
+	s.Clear()
+	is.Equal(s.Join(""), "")
 }
