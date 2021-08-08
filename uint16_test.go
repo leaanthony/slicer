@@ -29,26 +29,26 @@ func TestUint16Add(t *testing.T) {
 }
 
 func TestUint16Length(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint16()
 	s.Add(1)
 	s.Add(2)
 
-	is.Equal(s.Length(), 2)
+	is2.Equal(s.Length(), 2)
 }
 func TestUint16Deduplicate(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint16()
 	s.Add(1)
 	s.Add(2)
 	s.Add(2)
 	s.Add(2)
 
-	is.Equal(s.Length(), 4)
-	is.Equal(s.AsSlice(), []uint16{1, 2, 2, 2})
+	is2.Equal(s.Length(), 4)
+	is2.Equal(s.AsSlice(), []uint16{1, 2, 2, 2})
 	s.Deduplicate()
-	is.Equal(s.Length(), 2)
-	is.Equal(s.AsSlice(), []uint16{1, 2})
+	is2.Equal(s.Length(), 2)
+	is2.Equal(s.AsSlice(), []uint16{1, 2})
 }
 func TestUint16AddUnique(t *testing.T) {
 
@@ -171,13 +171,13 @@ func TestOptionalUint16Slice(t *testing.T) {
 
 // TestUint16Sort tests that the slicer can be sorted
 func TestUint16Sort(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	data := []uint16{5, 4, 3, 2, 1}
 	s := Uint16(data)
 	s.Sort()
 	result := s.Join(",")
 	expected := "1,2,3,4,5"
-	is.Equal(result, expected)
+	is2.Equal(result, expected)
 	s.Clear()
-	is.Equal(s.Join(""), "")
+	is2.Equal(s.Join(""), "")
 }

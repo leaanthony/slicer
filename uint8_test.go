@@ -7,62 +7,62 @@ import (
 
 func TestUint8Add(t *testing.T) {
 
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint8()
 	s.Add(1)
 	s.Add(2)
 
-	is.Equal(s.AsSlice(), []uint8{1, 2})
+	is2.Equal(s.AsSlice(), []uint8{1, 2})
 
 	s.Clear()
 	s.Add(1, 2)
 
-	is.Equal(s.AsSlice(), []uint8{1, 2})
+	is2.Equal(s.AsSlice(), []uint8{1, 2})
 
 }
 
 func TestUint8Length(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint8()
 	s.Add(1)
 	s.Add(2)
 
-	is.Equal(s.Length(), 2)
+	is2.Equal(s.Length(), 2)
 }
 
 func TestUint8AddUnique(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint8()
 	s.AddUnique(1)
 	s.AddUnique(2)
 	s.AddUnique(2)
 	s.AddUnique(2)
 
-	is.Equal(s.AsSlice(), []uint8{1, 2})
+	is2.Equal(s.AsSlice(), []uint8{1, 2})
 
 	s.Clear()
 	s.AddUnique(1, 2, 1, 2, 2, 1)
 
-	is.Equal(s.AsSlice(), []uint8{1, 2})
+	is2.Equal(s.AsSlice(), []uint8{1, 2})
 }
 
 func TestUint8Deduplicate(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint8()
 	s.Add(1)
 	s.Add(2)
 	s.Add(2)
 	s.Add(2)
 
-	is.Equal(s.Length(), 4)
-	is.Equal(s.AsSlice(), []uint8{1, 2, 2, 2})
+	is2.Equal(s.Length(), 4)
+	is2.Equal(s.AsSlice(), []uint8{1, 2, 2, 2})
 	s.Deduplicate()
-	is.Equal(s.Length(), 2)
-	is.Equal(s.AsSlice(), []uint8{1, 2})
+	is2.Equal(s.Length(), 2)
+	is2.Equal(s.AsSlice(), []uint8{1, 2})
 }
 
 func TestUint8AddSlice(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 
 	s := Uint8()
 	s.Add(1)
@@ -71,12 +71,12 @@ func TestUint8AddSlice(t *testing.T) {
 	extras := []uint8{3, 4}
 
 	s.AddSlice(extras)
-	is.Equal(s.AsSlice(), []uint8{1, 2, 3, 4})
+	is2.Equal(s.AsSlice(), []uint8{1, 2, 3, 4})
 }
 
 func TestUint8AddSlicer(t *testing.T) {
 
-	is := is.New(t)
+	is2 := is.New(t)
 
 	s := Uint8()
 	s.Add(1)
@@ -88,12 +88,12 @@ func TestUint8AddSlicer(t *testing.T) {
 
 	s.AddSlicer(p)
 
-	is.Equal(s.AsSlice(), []uint8{1, 2, 3, 4})
+	is2.Equal(s.AsSlice(), []uint8{1, 2, 3, 4})
 }
 
 func TestUint8Filter(t *testing.T) {
 
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint8()
 	s.Add(18)
 	s.Add(120)
@@ -107,13 +107,13 @@ func TestUint8Filter(t *testing.T) {
 		return i > 19
 	})
 
-	is.Equal(result.AsSlice(), []uint8{120, 20, 29})
+	is2.Equal(result.AsSlice(), []uint8{120, 20, 29})
 
 }
 
 func TestUint8Each(t *testing.T) {
 
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint8()
 	s.Add(18)
 	s.Add(10)
@@ -129,13 +129,13 @@ func TestUint8Each(t *testing.T) {
 		result = result + i
 	})
 	var expected uint8 = 91
-	is.Equal(result, expected)
+	is2.Equal(result, expected)
 }
 
 // TestOptionalUint8Slice tests when you construct a Uint8 with
 // an existing slice
 func TestOptionalUint8Slice(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 
 	data := []uint8{1, 2, 3}
 	s := Uint8(data)
@@ -145,20 +145,20 @@ func TestOptionalUint8Slice(t *testing.T) {
 		result += elem
 	})
 	var expected uint8 = 6
-	is.Equal(result, expected)
+	is2.Equal(result, expected)
 
 }
 
 // TestUint8Sort tests that the slicer can be sorted
 func TestUint8Sort(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 
 	data := []uint8{5, 4, 3, 2, 1}
 	s := Uint8(data)
 	s.Sort()
 	result := s.Join(",")
 	expected := "1,2,3,4,5"
-	is.Equal(result, expected)
+	is2.Equal(result, expected)
 	s.Clear()
-	is.Equal(s.Join(""), "")
+	is2.Equal(s.Join(""), "")
 }

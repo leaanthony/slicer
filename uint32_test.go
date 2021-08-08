@@ -69,27 +69,27 @@ func TestUint32AddSlice(t *testing.T) {
 }
 
 func TestUint32Length(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint32()
 	s.Add(1)
 	s.Add(2)
 
-	is.Equal(s.Length(), 2)
+	is2.Equal(s.Length(), 2)
 }
 
 func TestUint32Deduplicate(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint32()
 	s.Add(1)
 	s.Add(2)
 	s.Add(2)
 	s.Add(2)
 
-	is.Equal(s.Length(), 4)
-	is.Equal(s.AsSlice(), []uint32{1, 2, 2, 2})
+	is2.Equal(s.Length(), 4)
+	is2.Equal(s.AsSlice(), []uint32{1, 2, 2, 2})
 	s.Deduplicate()
-	is.Equal(s.Length(), 2)
-	is.Equal(s.AsSlice(), []uint32{1, 2})
+	is2.Equal(s.Length(), 2)
+	is2.Equal(s.AsSlice(), []uint32{1, 2})
 
 }
 func TestUint32AddSlicer(t *testing.T) {
@@ -174,13 +174,13 @@ func TestOptionalUint32Slice(t *testing.T) {
 
 // TestUint32Sort tests that the slicer can be sorted
 func TestUint32Sort(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	data := []uint32{5, 4, 3, 2, 1}
 	s := Uint32(data)
 	s.Sort()
 	result := s.Join(",")
 	expected := "1,2,3,4,5"
-	is.Equal(expected, result)
+	is2.Equal(expected, result)
 	s.Clear()
-	is.Equal(s.Join(""), "")
+	is2.Equal(s.Join(""), "")
 }

@@ -147,37 +147,37 @@ func TestOptionalUint64Slice(t *testing.T) {
 	}
 }
 func TestUint64Deduplicate(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint64()
 	s.Add(1)
 	s.Add(2)
 	s.Add(2)
 	s.Add(2)
 
-	is.Equal(s.Length(), 4)
-	is.Equal(s.AsSlice(), []uint64{1, 2, 2, 2})
+	is2.Equal(s.Length(), 4)
+	is2.Equal(s.AsSlice(), []uint64{1, 2, 2, 2})
 	s.Deduplicate()
-	is.Equal(s.Length(), 2)
-	is.Equal(s.AsSlice(), []uint64{1, 2})
+	is2.Equal(s.Length(), 2)
+	is2.Equal(s.AsSlice(), []uint64{1, 2})
 }
 func TestUint64Length(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	s := Uint64()
 	s.Add(1)
 	s.Add(2)
 
-	is.Equal(s.Length(), 2)
+	is2.Equal(s.Length(), 2)
 }
 
 // TestUint64Sort tests that the slicer can be sorted
 func TestUint64Sort(t *testing.T) {
-	is := is.New(t)
+	is2 := is.New(t)
 	data := []uint64{5, 4, 3, 2, 1}
 	s := Uint64(data)
 	s.Sort()
 	result := s.Join(",")
 	expected := "1,2,3,4,5"
-	is.Equal(expected, result)
+	is2.Equal(expected, result)
 	s.Clear()
-	is.Equal(s.Join(""), "")
+	is2.Equal(s.Join(""), "")
 }
