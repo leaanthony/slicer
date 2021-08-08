@@ -1,4 +1,4 @@
-// Package slicer cotains utility classes for handling slices
+// Package slicer contains utility classes for handling slices
 package slicer
 
 // Imports
@@ -106,6 +106,7 @@ func (s *InterfaceSlicer) Deduplicate() {
 
 	s.slice = result.AsSlice()
 }
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *InterfaceSlicer) Join(separator string) string {
 	var builder strings.Builder

@@ -2,33 +2,14 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
-// CopyFile from source to target
-func CopyFile(source string, target string) error {
-	s, err := os.Open(source)
-	if err != nil {
-		return err
-	}
-	defer s.Close()
-	d, err := os.Create(target)
-	if err != nil {
-		return err
-	}
-	if _, err := io.Copy(d, s); err != nil {
-		d.Close()
-		return err
-	}
-	return d.Close()
-}
-
 func main() {
-	types := []string{"string", "int64", "int32", "int16", "int8", "int", "float64", "float32", "bool", "interface"}
+	types := []string{"string", "int64", "int32", "int16", "int8", "int", "uint64", "uint32", "uint16", "uint8", "uint", "float64", "float32", "bool", "interface"}
 
 	// Read template
 	cwd, err := os.Getwd()

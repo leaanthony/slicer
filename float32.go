@@ -1,4 +1,4 @@
-// Package slicer cotains utility classes for handling slices
+// Package slicer contains utility classes for handling slices
 package slicer
 
 // Imports
@@ -107,6 +107,7 @@ func (s *Float32Slicer) Deduplicate() {
 
 	s.slice = result.AsSlice()
 }
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *Float32Slicer) Join(separator string) string {
 	var builder strings.Builder
@@ -125,6 +126,7 @@ func (s *Float32Slicer) Join(separator string) string {
 	result := builder.String()
 	return result
 }
+
 // Sort the slice values
 func (s *Float32Slicer) Sort() {
 	sort.Slice(s.slice, func(i, j int) bool { return s.slice[i] < s.slice[j] })

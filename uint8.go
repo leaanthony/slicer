@@ -6,27 +6,27 @@ import "sort"
 import "fmt"
 import "strings"
 
-// Int8Slicer handles slices of int8
-type Int8Slicer struct {
-	slice []int8
+// Uint8Slicer handles slices of uint8
+type Uint8Slicer struct {
+	slice []uint8
 }
 
-// Int8 creates a new Int8Slicer
-func Int8(slice ...[]int8) *Int8Slicer {
+// Uint8 creates a new Uint8Slicer
+func Uint8(slice ...[]uint8) *Uint8Slicer {
 	if len(slice) > 0 {
-		return &Int8Slicer{slice: slice[0]}
+		return &Uint8Slicer{slice: slice[0]}
 	}
-	return &Int8Slicer{}
+	return &Uint8Slicer{}
 }
 
-// Add a int8 value to the slicer
-func (s *Int8Slicer) Add(value int8, additional ...int8) {
+// Add a uint8 value to the slicer
+func (s *Uint8Slicer) Add(value uint8, additional ...uint8) {
 	s.slice = append(s.slice, value)
 	s.slice = append(s.slice, additional...)
 }
 
-// AddUnique adds a int8 value to the slicer if it does not already exist
-func (s *Int8Slicer) AddUnique(value int8, additional ...int8) {
+// AddUnique adds a uint8 value to the slicer if it does not already exist
+func (s *Uint8Slicer) AddUnique(value uint8, additional ...uint8) {
 
 	if !s.Contains(value) {
 		s.slice = append(s.slice, value)
@@ -40,24 +40,24 @@ func (s *Int8Slicer) AddUnique(value int8, additional ...int8) {
 	}
 }
 
-// AddSlice adds a int8 slice to the slicer
-func (s *Int8Slicer) AddSlice(value []int8) {
+// AddSlice adds a uint8 slice to the slicer
+func (s *Uint8Slicer) AddSlice(value []uint8) {
 	s.slice = append(s.slice, value...)
 }
 
 // AsSlice returns the slice
-func (s *Int8Slicer) AsSlice() []int8 {
+func (s *Uint8Slicer) AsSlice() []uint8 {
 	return s.slice
 }
 
-// AddSlicer appends a Int8Slicer to the slicer
-func (s *Int8Slicer) AddSlicer(value *Int8Slicer) {
+// AddSlicer appends a Uint8Slicer to the slicer
+func (s *Uint8Slicer) AddSlicer(value *Uint8Slicer) {
 	s.slice = append(s.slice, value.AsSlice()...)
 }
 
 // Filter the slice based on the given function
-func (s *Int8Slicer) Filter(fn func(int8) bool) *Int8Slicer {
-	result := &Int8Slicer{}
+func (s *Uint8Slicer) Filter(fn func(uint8) bool) *Uint8Slicer {
+	result := &Uint8Slicer{}
 	for _, elem := range s.slice {
 		if fn(elem) {
 			result.Add(elem)
@@ -67,14 +67,14 @@ func (s *Int8Slicer) Filter(fn func(int8) bool) *Int8Slicer {
 }
 
 // Each runs a function on every element of the slice
-func (s *Int8Slicer) Each(fn func(int8)) {
+func (s *Uint8Slicer) Each(fn func(uint8)) {
 	for _, elem := range s.slice {
 		fn(elem)
 	}
 }
 
 // Contains indicates if the given value is in the slice
-func (s *Int8Slicer) Contains(matcher int8) bool {
+func (s *Uint8Slicer) Contains(matcher uint8) bool {
 	result := false
 	for _, elem := range s.slice {
 		if elem == matcher {
@@ -85,19 +85,19 @@ func (s *Int8Slicer) Contains(matcher int8) bool {
 }
 
 // Length returns the number of elements in the slice
-func (s *Int8Slicer) Length() int {
+func (s *Uint8Slicer) Length() int {
 	return len(s.slice)
 }
 
 // Clear all elements in the slice
-func (s *Int8Slicer) Clear() {
-	s.slice = []int8{}
+func (s *Uint8Slicer) Clear() {
+	s.slice = []uint8{}
 }
 
 // Deduplicate removes duplicate values from the slice
-func (s *Int8Slicer) Deduplicate() {
+func (s *Uint8Slicer) Deduplicate() {
 
-	result := &Int8Slicer{}
+	result := &Uint8Slicer{}
 
 	for _, elem := range s.slice {
 		if !result.Contains(elem) {
@@ -109,7 +109,7 @@ func (s *Int8Slicer) Deduplicate() {
 }
 
 // Join returns a string with the slicer elements separated by the given separator
-func (s *Int8Slicer) Join(separator string) string {
+func (s *Uint8Slicer) Join(separator string) string {
 	var builder strings.Builder
 
 	// Shortcut no elements
@@ -128,6 +128,6 @@ func (s *Int8Slicer) Join(separator string) string {
 }
 
 // Sort the slice values
-func (s *Int8Slicer) Sort() {
+func (s *Uint8Slicer) Sort() {
 	sort.Slice(s.slice, func(i, j int) bool { return s.slice[i] < s.slice[j] })
 }

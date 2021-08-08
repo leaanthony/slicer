@@ -1,4 +1,4 @@
-// Package slicer cotains utility classes for handling slices
+// Package slicer contains utility classes for handling slices
 package slicer
 
 // Imports
@@ -106,10 +106,12 @@ func (s *StringSlicer) Deduplicate() {
 
 	s.slice = result.AsSlice()
 }
+
 // Join returns a string with the slicer elements separated by the given separator
 func (s *StringSlicer) Join(separator string) string {
 	return strings.Join(s.slice, separator)
 }
+
 // Sort the slice values
 func (s *StringSlicer) Sort() {
 	sort.Strings(s.slice)
